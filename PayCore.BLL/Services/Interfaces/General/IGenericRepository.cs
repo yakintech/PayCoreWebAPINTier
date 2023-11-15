@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,10 @@ namespace PayCore.BLL.Services
         List<T> GetAll();
 
         IQueryable<T> GetAllWithQueryable();
+
+        IQueryable<T> GetAllWithExternalQuery(Expression<Func<T,bool>> filter);
+
+        T Delete(Guid id);
 
     }
 }

@@ -5,6 +5,7 @@ using PayCore.DAL.ORM.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,15 +31,13 @@ namespace PayCore.BLL.Services
             entity.IsDeleted = false;
 
             dbSet.Add(entity);
-            context.SaveChanges();
-
             return entity;
         }
 
         public virtual T GetById(Guid id)
         {
-           var entity = dbSet.FirstOrDefault(x => x.Id == id);
-           return entity;
+            var entity = dbSet.FirstOrDefault(x => x.Id == id);
+            return entity;
         }
 
         public virtual List<T> GetAll()
@@ -49,7 +48,26 @@ namespace PayCore.BLL.Services
 
         public virtual IQueryable<T> GetAllWithQueryable()
         {
-            var result = dbSet.Where(x => x.IsDeleted == false);
+            var result = dbSet.Where(x => x.IsDeleted == false).OrderByDescending(q => q.AddDate);
+            return result;
+        }
+
+        public T Delete(Guid id)
+        {
+            var entity = dbSet.FirstOrDefault(y => y.Id == id);
+
+
+            entity.ModifiedDate = DateTime.Now;
+            entity.IsDeleted = true;
+            entity.DeletedDate = DateTime.Now;
+
+            return entity;
+
+        }
+
+        public IQueryable<T> GetAllWithExternalQuery(Expression<Func<T, bool>> filter)
+        {
+            var result = dbSet.Where(q => q.IsDeleted == false).Where(filter);
             return result;
         }
     }

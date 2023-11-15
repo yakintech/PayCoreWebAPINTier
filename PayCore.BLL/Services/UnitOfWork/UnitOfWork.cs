@@ -11,6 +11,8 @@ namespace PayCore.BLL.Services
     {
         public ICategoryRepository categoryRepository { get; set; }
 
+        public IProductRepository productRepository { get; set; }
+
         private PayCoreContext _payCoreContext;
 
         public UnitOfWork(PayCoreContext context)
@@ -18,8 +20,12 @@ namespace PayCore.BLL.Services
             _payCoreContext= context;
 
             categoryRepository = new CategoryRepository(_payCoreContext);
+            productRepository= new ProductRepository(_payCoreContext);
         }
 
-    
+        public void Commit()
+        {
+            _payCoreContext.SaveChanges();
+        }
     }
 }

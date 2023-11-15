@@ -9,5 +9,8 @@ namespace PayCore.BLL.Services
     public interface IUnitOfWork
     {
         ICategoryRepository categoryRepository { get; }
+        IProductRepository productRepository { get; }
+
+        void Commit();
     }
 }
