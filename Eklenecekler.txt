@@ -1,0 +1,9 @@
+
+base modele addUserID, updateUserID vb. kolonlar eklenecek, ISort
+fluent api
+plurize
+
+
+
+namespaceler globalden yonetilecek
+
