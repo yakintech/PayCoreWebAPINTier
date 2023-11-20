@@ -16,7 +16,7 @@ namespace PayCore.API.Controllers
         [HttpPost]
         public IActionResult Login(LoginRequestDto model)
         {
-            var userControl = _unitOfWork.webUserRepository.Any(q => q.EMail.ToLower() == model.EMail.ToLower());
+            var userControl = _unitOfWork.webUserRepository.Any(q => q.EMail.ToLower() == model.EMail.ToLower() && q.Password == model.Password);
 
             if (userControl)
             {
@@ -30,8 +30,6 @@ namespace PayCore.API.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(model);
         }
     }
 }

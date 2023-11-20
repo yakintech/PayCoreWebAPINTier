@@ -76,5 +76,11 @@ namespace PayCore.BLL.Services
             var result = dbSet.Where(q => q.IsDeleted == false).Any(expression);
             return result;
         }
+
+        public T FirstOrDefault(Expression<Func<T, bool>> expression)
+        {
+            var result = dbSet.Where(q => q.IsDeleted == false).FirstOrDefault(expression);
+            return result;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using PayCore.DAL.ORM;
+﻿using PayCore.DAL.ORM.Entity.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

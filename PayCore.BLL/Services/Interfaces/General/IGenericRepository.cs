@@ -11,6 +11,9 @@ namespace PayCore.BLL.Services
     public interface IGenericRepository<T> where T : BaseEntity
     {
         bool Any(Expression<Func<T, bool>> expression);
+
+        T FirstOrDefault(Expression<Func<T, bool>> expression);
+
         T GetById(Guid id);
 
         T Create(T entity);

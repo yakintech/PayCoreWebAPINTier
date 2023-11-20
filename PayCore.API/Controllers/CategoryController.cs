@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PayCore.API.Models.Enums;
+using PayCore.API.Models.Filters;
 using PayCore.BLL.Services;
 using PayCore.DAL.ORM;
 using PayCore.DAL.ORM.Context;
@@ -8,6 +11,7 @@ using PayCore.DTO.Models.Category.Response;
 namespace PayCore.API.Controllers
 {
 
+    [Authorize]
     public class CategoryController : BaseController
     {
 
@@ -39,6 +43,8 @@ namespace PayCore.API.Controllers
 
 
         [HttpGet]
+        [RoleFilter(EnumRoles.Admin)]
+
         public IActionResult GetAll()
         {
             //var response = _unitOfWork.categoryRepository.GetAll();
