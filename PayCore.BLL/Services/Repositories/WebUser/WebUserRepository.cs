@@ -18,4 +18,4 @@ namespace PayCore.BLL.Services.Repositories
 
     }
 }
-}
+
