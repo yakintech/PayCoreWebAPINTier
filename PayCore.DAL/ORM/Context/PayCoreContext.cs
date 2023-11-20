@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PayCore.DAL.ORM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,7 @@ namespace PayCore.DAL.ORM.Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<WebUser> WebUsers { get; set; }
     }
 }
