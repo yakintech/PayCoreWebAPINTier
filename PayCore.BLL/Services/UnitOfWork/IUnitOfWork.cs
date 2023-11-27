@@ -1,4 +1,4 @@
-﻿using PayCore.BLL.Services.Interfaces;
+﻿using PayCore.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace PayCore.BLL.Services
         ICategoryRepository categoryRepository { get; }
         IProductRepository productRepository { get; }
 
-        IWebUserRepository webUserRepository { get; }
+       // IWebUserRepository webUserRepository { get; }
 
         void Commit();
     }

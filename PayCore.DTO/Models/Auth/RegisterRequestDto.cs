@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayCore.DTO.Models
+namespace PayCore.DTO.Models.Auth
 {
-    public class RefreshTokenRequestDto
+    public class RegisterRequestDto
     {
+
         public string EMail { get; set; }
-        public string RefreshToken { get; set; }
+        public string Password { get; set; }
     }
 }

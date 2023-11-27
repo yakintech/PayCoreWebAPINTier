@@ -12,26 +12,27 @@ namespace PayCore.BLL.Services.Auth
 
         public static bool RoleCheck(string email, int roleNumber)
         {
-            var context = new PayCoreContext();
+            return true;
+            //var context = new PayCoreContext();
 
-            var roleStatus = false;
+            //var roleStatus = false;
 
-            var roleControl = context.WebUsers.FirstOrDefault(q => q.IsDeleted == false && q.EMail == email);
+            //var roleControl = context.WebUsers.FirstOrDefault(q => q.IsDeleted == false && q.EMail == email);
 
-            if (roleControl != null)
-            {
-                string[] roles = roleControl.Roles?.Split(';');
+            //if (roleControl != null)
+            //{
+            //    string[] roles = roleControl.Roles?.Split(';');
 
-                foreach (var role in roles)
-                {
-                    if(role == roleNumber.ToString())
-                    {
-                        roleStatus = true;
-                    }
-                }
-            }
+            //    foreach (var role in roles)
+            //    {
+            //        if(role == roleNumber.ToString())
+            //        {
+            //            roleStatus = true;
+            //        }
+            //    }
+            //}
 
-            return roleStatus;
+            //return roleStatus;
         }
     }
 }

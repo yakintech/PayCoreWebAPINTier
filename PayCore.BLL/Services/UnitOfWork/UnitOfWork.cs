@@ -1,5 +1,4 @@
-﻿using PayCore.BLL.Services.Interfaces;
-using PayCore.BLL.Services.Repositories;
+﻿using PayCore.BLL.Services.Repositories;
 using PayCore.DAL.ORM.Context;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace PayCore.BLL.Services
 
         public IProductRepository productRepository { get; set; }
 
-        public IWebUserRepository webUserRepository { get; set; }
+       // public IWebUserRepository webUserRepository { get; set; }
 
         private PayCoreContext _payCoreContext;
 
@@ -25,7 +24,7 @@ namespace PayCore.BLL.Services
 
             categoryRepository = new CategoryRepository(_payCoreContext);
             productRepository= new ProductRepository(_payCoreContext);
-            webUserRepository = new WebUserRepository(_payCoreContext);
+          //  webUserRepository = new WebUserRepository(_payCoreContext);
         }
 
         public void Commit()

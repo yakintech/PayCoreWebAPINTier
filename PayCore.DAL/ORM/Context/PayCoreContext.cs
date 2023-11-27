@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PayCore.DAL.ORM.Entity.User;
 using System;
 using System.Collections.Generic;
@@ -9,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace PayCore.DAL.ORM.Context
 {
-    public class PayCoreContext : DbContext
+    public class PayCoreContext : IdentityDbContext<IdentityUser>
     {
+
+        
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

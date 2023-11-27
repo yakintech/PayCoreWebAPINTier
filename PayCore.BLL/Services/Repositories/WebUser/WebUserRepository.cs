@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PayCore.BLL.Services.Interfaces;
 using PayCore.DAL.ORM.Entity.User;
 
 namespace PayCore.BLL.Services.Repositories
 {
-    internal class WebUserRepository : GenericRepository<WebUser>, IWebUserRepository
+    internal class WebUserRepository 
     {
-        public WebUserRepository(PayCoreContext context) : base(context)
+       
+        public WebUser UpdateRefreshToken(string refreshToken, string email) 
         {
-
+            using (PayCoreContext db = new PayCoreContext())
+            {
+                //var webuser = db.WebUsers.FirstOrDefault(q => q.EMail ==)
+            }
+            return null;
         }
-
     }
 }
 

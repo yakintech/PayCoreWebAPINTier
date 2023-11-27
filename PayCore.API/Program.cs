@@ -1,12 +1,15 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using PayCore.BLL.Services;
 using PayCore.DAL.ORM.Context;
+using PayCore.DAL.ORM.Entity.User;
 using PayCore.DTO.Models;
 using PayCore.Mapping;
 using PayCore.Validation.Models.Category;
+using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,9 +40,11 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
+
 builder.Services.AddDbContext<PayCoreContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddIdentity<WebUser, IdentityRole>()
+.AddEntityFrameworkStores<PayCoreContext>();
 
 builder.Services.AddScoped<IValidator<CreateCategoryRequestDto>, CreateCategoryRequestValidator>();
 
