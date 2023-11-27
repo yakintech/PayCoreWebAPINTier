@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using PayCore.API.Models.Filters;
 using PayCore.BLL.Services;
 using PayCore.DAL.ORM.Context;
 using PayCore.DAL.ORM.Entity.User;
@@ -16,8 +17,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddFluentValidation();
+builder.Services.AddControllers()
+    .AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddIdentity<WebUser, IdentityRole>()
+.AddEntityFrameworkStores<PayCoreContext>();
+
+builder.Services.AddDbContext<PayCoreContext>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
 {
@@ -37,14 +45,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
 }));
 
 
-builder.Services.AddDbContext<PayCoreContext>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddIdentity<WebUser, IdentityRole>()
-.AddEntityFrameworkStores<PayCoreContext>();
+
 
 builder.Services.AddScoped<IValidator<CreateCategoryRequestDto>, CreateCategoryRequestValidator>();
 

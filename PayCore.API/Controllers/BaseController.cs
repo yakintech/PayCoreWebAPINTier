@@ -6,6 +6,5 @@ namespace PayCore.API.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-
     }
 }

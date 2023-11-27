@@ -11,7 +11,7 @@ using PayCore.DTO.Models.Category.Response;
 namespace PayCore.API.Controllers
 {
 
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class CategoryController : BaseController
     {
 
@@ -43,7 +43,7 @@ namespace PayCore.API.Controllers
 
 
         [HttpGet]
-        [RoleFilter(EnumRoles.Admin)]
+        //  [RoleFilter(EnumRoles.Admin)]
 
         public IActionResult GetAll()
         {
@@ -61,13 +61,14 @@ namespace PayCore.API.Controllers
         }
 
         [HttpGet("{id}")]
+//[ResponseHeaderFilter("userid","10")]
         public IActionResult GetById(Guid id)
         {
             var category = _unitOfWork.categoryRepository.GetById(id);
 
             if(category == null)
             {
-                return NotFound();
+                throw new DataNotFoundException(id.ToString());
             }
             else
             {
